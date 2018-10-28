@@ -1,0 +1,27 @@
+// ext makes method callable project wide
+ext.getVersionName = { ->
+    try {
+        def branchout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'rev-parse', '--abbrev-ref', 'HEAD'
+            standardOutput = branchout
+        }
+        def branch = branchout.toString().trim()
+
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'describe', '--tags'
+            standardOutput = stdout
+        }
+        def version = stdout.toString().trim()
+
+        if (branch.equals("master")) {
+            return version
+        } else {
+            return "${version}-${branch}"
+        }
+
+    } catch (ignored) {
+        return 'unversioned';
+    }
+}
