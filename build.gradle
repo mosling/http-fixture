@@ -50,7 +50,5 @@ tasks.withType(JavaCompile) {
 }
 
 task showVersion {
-    doLast {
         println 'VersionName: ' + getVersionName()
-    }
 }
