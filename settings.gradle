@@ -1,0 +1,3 @@
+rootProject.name = 'http-fixture'
+
+enableFeaturePreview('STABLE_PUBLISHING')
