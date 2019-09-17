@@ -52,3 +52,8 @@ tasks.withType(JavaCompile) {
 task showVersion {
         println 'VersionName: ' + getVersionName()
 }
+
+task downloadDependencies(type: Exec) {
+    configurations.testRuntime.files
+    commandLine 'echo', 'Downloaded all dependencies'
+}
